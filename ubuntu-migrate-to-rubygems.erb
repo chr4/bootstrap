@@ -1,0 +1,18 @@
+bash -c '
+<%= "export http_proxy=\"#{knife_config[:bootstrap_proxy]}\"" if knife_config[:bootstrap_proxy] -%>
+
+apt-get update
+
+# purge chef .deb package before installing gem
+apt-get purge chef -y
+
+# remove chef directory
+rm -rf /opt/chef
+
+# install ruby and dependencies
+apt-get install -y ruby1.9.1 ruby1.9.1-dev rubygems1.9.1 build-essential wget
+
+gem update --no-rdoc --no-ri
+gem install ohai --no-rdoc --no-ri --verbose
+gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
+'

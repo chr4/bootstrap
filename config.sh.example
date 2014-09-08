@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# This is an example configuration file, used by the *.sh scripts
+# Copy this to config.sh, and adapt
+
+# Configure Chef server
+DOMAIN="example.com"
+CHEF_SERVER="https://chef.$DOMAIN"
