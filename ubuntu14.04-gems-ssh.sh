@@ -45,4 +45,4 @@ end
 EOP
 
 # Register node at the Chef server
-# $SSH_CMD "sudo chef-client --once"
+$SSH_CMD "sudo chef-client --once"
