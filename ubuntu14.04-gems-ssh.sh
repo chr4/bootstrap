@@ -23,13 +23,11 @@ $SSH_CMD "sudo apt-get install -y ruby ruby-dev build-essential wget"
 
 $SSH_CMD "sudo gem install chef --no-rdoc --no-ri --verbose"
 
-
 $SSH_CMD "sudo mkdir -p /etc/chef /var/log/chef"
 
 # Copy validation key
 $SSH_CMD "awk NF |sudo tee /etc/chef/validation.pem" < ../.chef/chef-validator.pem
 $SSH_CMD "sudo chmod 0600 /etc/chef/validation.pem"
-
 
 # Create client configuration
 $SSH_CMD "cat |sudo tee /etc/chef/client.rb" <<EOP
@@ -45,7 +43,6 @@ Dir.glob(File.join('/etc/chef', 'client.d', '*.rb')).each do |conf|
   Chef::Config.from_file(conf)
 end
 EOP
-
 
 # Register node at the Chef server
 # $SSH_CMD "sudo chef-client --once"
