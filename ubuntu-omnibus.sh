@@ -44,6 +44,7 @@ client_fork true
 log_location '/var/log/chef/client.log'
 interval 900
 ssl_ca_path '/etc/ssl/certs'
+ssl_verify_mode :$SSL_VERIFY_MODE
 node_name '$1'
 
 Dir.glob(File.join('/etc/chef', 'client.d', '*.rb')).each do |conf|
