@@ -33,13 +33,13 @@ fi
 $SSH_CMD "sudo mkdir -p /etc/chef /var/log/chef"
 
 # Copy validation key
-$SSH_CMD "awk NF |sudo tee /etc/chef/validation.pem" < ../.chef/chef-validator.pem
+$SSH_CMD "awk NF |sudo tee /etc/chef/validation.pem" < ../.chef/$ORGANIZATION.pem
 $SSH_CMD "sudo chmod 0600 /etc/chef/validation.pem"
 
 # Create client configuration
 $SSH_CMD "cat |sudo tee /etc/chef/client.rb" <<EOP
 chef_server_url '$CHEF_SERVER'
-validation_client_name 'chef-validator'
+validation_client_name '$ORGANIZATION-validator'
 client_fork true
 log_location '/var/log/chef/client.log'
 interval 900
