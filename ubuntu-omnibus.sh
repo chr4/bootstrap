@@ -16,7 +16,7 @@ set -o errexit
 # SSH base command
 SSH_CMD="ssh $2"
 
-# Install dependencies and Chef gem
+# Update system
 $SSH_CMD "sudo apt-get update"
 $SSH_CMD "sudo apt-get dist-upgrade -y"
 
