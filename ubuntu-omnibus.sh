@@ -4,17 +4,26 @@
 # I wrote this, as net-ssh still has problems with decent ssh ciphers
 #
 # Usage:
-# ./ubuntu14.04-gems-ssh.sh chef_nodename [fqdn|ip]
+# ./ubuntu14.04-gems-ssh.sh nodename fqdn|ip [environment] [run_list]
 
 # Fail on uninitialized variables or if something goes wrong
 set -o nounset
 set -o errexit
 
+# Arguments
+NODE=$1
+shift
+HOST=$1
+shift
+ENVIRONMENT=$1
+shift
+RUN_LIST=$@
+
 # Load configuration
 . config.sh
 
 # SSH base command
-SSH_CMD="ssh $2"
+SSH_CMD="ssh $HOST"
 
 # Update system
 $SSH_CMD "sudo apt-get update"
@@ -54,7 +63,7 @@ log_location '/var/log/chef/client.log'
 interval 900
 ssl_ca_path '/etc/ssl/certs'
 ssl_verify_mode :$SSL_VERIFY_MODE
-node_name '$1'
+node_name '$NODE'
 
 Dir.glob(File.join('/etc/chef', 'client.d', '*.rb')).each do |conf|
   Chef::Config.from_file(conf)
@@ -63,3 +72,15 @@ EOP
 
 # Register node at the Chef server
 $SSH_CMD "sudo chef-client --once"
+
+# Set the environment if given
+if [ -n "$ENVIRONMENT" ]; then
+  echo "Setting environment to $ENVIRONMENT"
+  knife node environment set $NODE $ENVIRONMENT
+fi
+
+# Set run_list if given
+if [ -n "$RUN_LIST" ]; then
+  echo "Adding items to run_list: $RUN_LIST"
+  knife node run_list set $NODE $RUN_LIST
+fi
