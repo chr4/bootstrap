@@ -29,11 +29,12 @@ SSH_CMD="ssh $HOST"
 $SSH_CMD "sudo apt-get update"
 $SSH_CMD "sudo apt-get dist-upgrade -y"
 
-# Check whether chef package is installed
-if $SSH_CMD "dpkg --list |grep chef" |grep -q '^ii'; then
-  echo "Chef package already installed, skipping"
+# Check whether chef package is installed and in the required version
+INSTALLED_CHEF_VERSION=$($SSH_CMD "dpkg --list |grep chef |grep '^ii' |awk '{print \$3}'")
+if [ "$CHEF_VERSION" == "$INSTALLED_CHEF_VERSION" ]; then
+  echo "Chef package ($CHEF_VERSION) already installed, skipping"
 else
-  echo "Installing Chef package"
+  echo "Installing Chef package ($CHEF_VERSION)"
   $SSH_CMD "sudo apt-get install wget -y"
   $SSH_CMD "wget $CHEF_CLIENT_PACKAGE"
 
