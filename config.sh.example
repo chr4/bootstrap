@@ -10,6 +10,6 @@ CHEF_SERVER="https://chef.$DOMAIN/organizations/$ORGANIZATION"
 SSL_VERIFY_MODE="verify_peer"
 
 # Get URL and SHA1 of chef-client package from https://downloads.chef.io/chef-client/
-CHEF_VERSION="12.10.24-1"
-CHEF_CLIENT_PACKAGE="https://packages.chef.io/stable/ubuntu/10.04/chef_${CHEF_VERSION}_amd64.deb"
-CHEF_CLIENT_SHA1="7d30b300f95f00036919ee8bf3b95ab73429e57e"
+CHEF_VERSION="12.11.18-1"
+CHEF_CLIENT_PACKAGE="https://packages.chef.io/stable/ubuntu/12.04/chef_${CHEF_VERSION}_amd64.deb"
+CHEF_CLIENT_SHA1="bc4a6642d6093b54de856da31f0651a56b0fdc8e"
