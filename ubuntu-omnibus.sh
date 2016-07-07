@@ -93,3 +93,9 @@ if [ -n "$RUN_LIST" ]; then
   echo "Adding items to run_list: $RUN_LIST"
   knife node run_list set $NODE $RUN_LIST
 fi
+
+# Add additional packages
+
+if [ -n "$APT_PACKAGES" ]; then
+  $SSH_CMD "sudo apt-get install $APT_PACKAGES -y"
+fi

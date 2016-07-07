@@ -16,3 +16,6 @@ APT_PROXY=""
 CHEF_VERSION="12.12.13-1"
 CHEF_CLIENT_PACKAGE="https://packages.chef.io/stable/ubuntu/12.04/chef_${CHEF_VERSION}_amd64.deb"
 CHEF_CLIENT_SHA1="e4db4a79ea6d8dac04829a13b489df77085a067e"
+
+# Additional packages to install using apt
+APT_PACKAGES=""
