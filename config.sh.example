@@ -9,6 +9,9 @@ ORGANIZATION="myorganization"
 CHEF_SERVER="https://chef.$DOMAIN/organizations/$ORGANIZATION"
 SSL_VERIFY_MODE="verify_peer"
 
+# Configure apt-proxy (for caching, etc)
+APT_PROXY=""
+
 # Get URL and SHA1 of chef-client package from https://downloads.chef.io/chef-client/
 CHEF_VERSION="12.12.13-1"
 CHEF_CLIENT_PACKAGE="https://packages.chef.io/stable/ubuntu/12.04/chef_${CHEF_VERSION}_amd64.deb"

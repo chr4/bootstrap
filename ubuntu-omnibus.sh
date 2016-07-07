@@ -25,6 +25,14 @@ RUN_LIST=$@
 # SSH base command
 SSH_CMD="ssh $HOST"
 
+# Use apt-cacher, if APT_PROXY is set
+if [ -n "$APT_PROXY" ]; then
+  $SSH_CMD "cat |sudo tee /etc/apt/apt.conf.d/01proxy" <<EOP
+Acquire::http::Proxy "$APT_PROXY";
+Acquire::https::Proxy "DIRECT";
+EOP
+fi
+
 # Update system
 $SSH_CMD "sudo apt-get update"
 $SSH_CMD "sudo apt-get dist-upgrade -y"
