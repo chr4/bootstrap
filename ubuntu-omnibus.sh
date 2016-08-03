@@ -95,7 +95,6 @@ if [ -n "$RUN_LIST" ]; then
 fi
 
 # Add additional packages
-
 if [ -n "$APT_PACKAGES" ]; then
   $SSH_CMD "sudo apt-get install $APT_PACKAGES -y"
 fi
