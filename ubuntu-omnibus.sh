@@ -46,10 +46,10 @@ else
   $SSH_CMD "sudo apt-get install wget -y"
   $SSH_CMD "wget $CHEF_CLIENT_PACKAGE"
 
-  # Verify SHA1 checksum
-  SHA1SUM=$($SSH_CMD sha1sum $(basename $CHEF_CLIENT_PACKAGE) |cut -f1 -d' ')
-  if [ "$SHA1SUM" != "$CHEF_CLIENT_SHA1" ]; then
-    echo "SHA1SUM of $(basename $CHEF_CLIENT_PACKAGE) invalid."
+  # Verify SHA256 checksum
+  SHA256SUM=$($SSH_CMD sha256sum $(basename $CHEF_CLIENT_PACKAGE) |cut -f1 -d' ')
+  if [ "$SHA256SUM" != "$CHEF_CLIENT_SHA256" ]; then
+    echo "SHA256SUM of $(basename $CHEF_CLIENT_PACKAGE) invalid."
     exit 1
   fi
 

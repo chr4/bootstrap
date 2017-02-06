@@ -12,10 +12,10 @@ SSL_VERIFY_MODE="verify_peer"
 # Configure apt-proxy (for caching, etc)
 APT_PROXY=""
 
-# Get URL and SHA1 of chef-client package from https://downloads.chef.io/chef-client/
-CHEF_VERSION="12.16.42-1"
+# Get URL and SHA256 of chef-client package from https://downloads.chef.io/chef-client/
+CHEF_VERSION="12.18.31-1"
 CHEF_CLIENT_PACKAGE="https://packages.chef.io/stable/ubuntu/12.04/chef_${CHEF_VERSION}_amd64.deb"
-CHEF_CLIENT_SHA1="e720803538b5db3cc9924121e3aa9e5a7a03cf79"
+CHEF_CLIENT_SHA256="4fdabf0ae37c999795bef5e97133c1b78182129edec28c17ccf9ca6661dcc754"
 
 # Additional packages to install using apt
 APT_PACKAGES=""
